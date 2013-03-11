@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="crawler-weibo">
+	<property name="version.number" value="3.0.8" />
+	<property name="src.java.dir" value="src" />
+	<property name="dist.dir" value="release" />
+	<property name="classes.dir" value="${dist.dir}/classes" />
+	<property name="lib.dir" value="${dist.dir}/lib" />
+
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
+	<path id="crawler-weibo.classpath">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<target depends="cleanall" name="init">
+		<mkdir dir="${classes.dir}" />
+		<copy includeemptydirs="false" todir="${classes.dir}">
+			<fileset dir="${src.java.dir}">
+				<include name="**/*.java" />
+				<exclude name="test/*" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="clean">
+		<delete dir="${classes.dir}" />
+	</target>
+	<target depends="clean" name="cleanall" />
+	<target name="clean-compile">
+		<delete dir="${classes.dir}" />
+	</target>
+	<target name="baseline" description="Record build information">
+		<!-- The name of the file that holds the build information. If no such file exists, a new 
+	   one gets created. -->
+		<propertyfile file="build.info">
+			<!-- Initial build number is 0001. Then, any subsequent build increments
+	 this number by one  each time. -->
+			<entry default="${version.number}" key="version.number" type="string" value="${version.number}" />
+			<entry default="0001" key="build.number" operation="+" pattern="0000" type="int" />
+			<!-- Records the current time to the same file. -->
+			<entry default="now" key="build.time" pattern="yyyy.MM.dd-HH.mm" type="date" value="now" />
+		</propertyfile>
+		<property name="build.number" value="${build.info}" />
+	</target>
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${classes.dir}" source="${source}" target="${target}" encoding="GBK">
+			<src path="${classes.dir}" />
+			<classpath refid="crawler-weibo.classpath" />
+		</javac>
+	</target>
+	<target depends="build-project" name="build-jar">
+		<mkdir dir="${lib.dir}" />
+		<!-- create timestamp with tstamp -->
+		<tstamp>
+			<format property="touch.time" pattern="yyyy/MM/dd HH:mm" />
+			<format property="version.time" pattern="yyyyMMddHHmm" />
+		</tstamp>
+		<pathconvert property="manifest.classpath" pathsep=" ">
+			<path refid="crawler-weibo.classpath" />
+			<flattenmapper />
+		</pathconvert>
+		<!-- ${lib.dir}/${ant.project.name}-${version.number}-${version.time}.jar -->
+		<jar destfile="${lib.dir}/${ant.project.name}-${version.number}.jar">
+			<fileset dir="${classes.dir}">
+				<exclude name="**/*.java" />
+			</fileset>
+			<manifest>
+				<attribute name="Implementation-Time" value="${touch.time}" />
+				<attribute name="Class-Path" value="${manifest.classpath} " />
+			</manifest>
+		</jar>
+	</target>
+
+	<target depends="build-release" name="build" />
+	<target depends="baseline, build-jar, clean-compile" name="build-release" />
+</project>

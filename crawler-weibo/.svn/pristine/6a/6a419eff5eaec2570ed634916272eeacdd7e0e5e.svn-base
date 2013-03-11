@@ -1,0 +1,211 @@
+#不需要执行请勿开启！任务初始化，是否加载twitter任务
+FrontierTaskInit.twitterStart = false
+#不需要执行请勿开启！任务初始化，是否加载sina任务
+FrontierTaskInit.sinaStart = true
+#不需要执行请勿开启！任务初始化，是否加载tencent任务
+FrontierTaskInit.tencentStart = true
+#不需要执行请勿开启！任务初始化，是否加载netease任务
+FrontierTaskInit.neteaseStart = false
+#不需要执行请勿开启！任务初始化，是否加载sohu任务
+FrontierTaskInit.sohuStart = false
+#是否对新添加的帐号立即处理
+CheckWeiboPageIsStartNowRule.isOpenStartNowOfNewWeiboPage = true
+
+
+#注册的新浪帐号
+SinaOauth.loginName = 2641882561@qq.com
+#注册的新浪密码
+SinaOauth.loginPassword = hello2771012
+#是启动时更新Sina授权。如果执行新浪微博爬取必须开启
+SinaOauth.startRefresh = true
+
+
+#Redis主机Ip与端口,用于落地文件排重
+JredisFilter.host2port = 117.18.112.5:6379
+#Redis主机Ip,用于存储重点人账户
+AccountRedisCache.host = 117.18.112.5
+#Redis主机端口
+AccountRedisCache.port = 6380
+
+#种子数据库地址
+AccountDBCache.host = 116.114.17.104
+#种子数据库账户名
+AccountDBCache.name = ppobj
+#种子数据库密码
+AccountDBCache.password = runco
+#查询的子字符串
+AccountDBCache.queryString = 
+
+
+#重点人账户目录文件
+keyPerson.account = account/
+#重点人账户目录文件
+keyPerson.account.bak = account.bak/
+
+
+#AccountCache加载重点人账户的周期(单位秒)
+accountCache.reloadInterval = 60
+#最大关注、取消关注失败次数
+accountCache.maxFailedNo = 3
+
+
+#生成落地文件目录,相对路径。可改为其它绝对路径
+vecolityWriter.folder = velocity/
+#velocity配置文件文件
+vecolityWriter.propertiesFile = conf/velocity.properties
+
+
+#指定日志文件
+Log4j.propertiesFile = conf/log4j.properties
+#vecolityWriteCache 多长时间后开始写入磁盘(单位秒)
+vecolityWriteCache.delay = 30
+#vecolityWriteCache 每隔多长时间清空缓存(单位秒)
+vecolityWriteCache.period = 30
+
+
+#Frontier更新队列中任务的等时间周期(单位秒)
+frontier.checkTime = 5
+#Frontier任务目录
+frontier.TaskFileName = 
+
+
+#准备翻页时，如果本页去重结果有N条已经存在，则不翻页
+writerOkRule.maxStoreRepeatNum = 5
+
+
+#线程池活动线程数
+Controller.corePoolSize = 10
+#线程池最大线程数
+Controller.maximumPoolSize = 1000
+#线程池空闲线程最大等待时间
+Controller.keepAliveTime = 1000
+#阻塞工作队列大小
+Controller.blockingQueueSize = 10000
+#种子加载方式，如果是数据库加载方式请配置AccountDBCache三个选项地址
+#默认采用properties启动方式
+Controller.isStartFromDB = true
+
+
+#VelocityBean池最大活动数量
+VelocityBeanPool.maxActive = 20
+#VelocityBean池最大等待时间
+VelocityBeanPool.maxWait = 1000
+
+
+#Http最大超时时间(单位秒)
+MyHttpclient.CONNECTION_TIMEOUT = 20000
+
+
+#新浪授权配置文件
+SinaOauth.sinaOauthFile = conf/SinaOauth.oauth
+#腾讯授权配置文件
+TencnentOauth.tencentOauthFile = conf/TencentOauth.oauth
+#Twitter授权配置文件
+TwitterOauth.twitterOauthFile = conf/TwitterOauth.oauth
+#Netease授权配置文件
+NeteaseOauth.neteaseOauthFile = conf/NeteaseOauth.oauth
+#Sohu授权配置文件
+SohuOauth.sohuOauthFile = conf/SohuOauth.oauth
+
+
+#新浪微博访问频率控制(单位秒)
+Task.sinaRateControl = 3
+#腾讯访问频率控制(单位秒)
+Task.tencentRateControl = 3
+#Twitter微博访问频率控制(单位秒)
+Task.twitterRateControl = 6
+#Sohu访问频率控制(单位秒)
+Task.sohuRateControl = 1
+#Netease访问频率控制(单位秒)
+Task.neteaseRateControl = 1
+#Twitter好友关注与取消关注频率控制(单位秒)
+Task.twitterFriendShipProcessInterval = 2
+#Sina好友关注与取消关注频率控制(单位秒)
+Task.sinaFriendShipProcessInterval = 6
+
+#新浪粉丝提取数量
+extractorTotalNum.sinaFollowerTotalNum =  55
+#新浪好友提取数量
+extractorTotalNum.sinaFriendTotalNum =  22
+#Twitter微博时间线提取数量
+extractorTotalNum.twitterWeiboTotalNum =  10
+#Netease微博时间线提取数量
+extractorTotalNum.neteaseWeiboTotalNum =  50
+#Netease搜索结果数
+extractorTotalNum.neteaseSearchResultNo =  20
+#Sohu微博时间线提取数量
+extractorTotalNum.sohuWeiboTotalNum =  50
+#Sohu搜索结果数
+extractorTotalNum.sohuSearchResultNo =  20
+
+
+#新浪微博轮询周期(单位秒)
+GenWeiboPageFromAccount.sinaWeiboStartTime =  180
+#新浪好友轮询周期(单位秒)
+GenWeiboPageFromAccount.sinaFriendStartTime = 86400
+#新浪粉丝轮询周期(单位秒)
+GenWeiboPageFromAccount.sinaFollowerStartTime = 86400
+#新浪搜索轮询周期(单位秒)
+GenWeiboPageFromAccount.sinaSearchStartTime = 60
+#新浪热点话题轮询周期(单位秒)
+GenWeiboPageFromAccount.sinaTrendStartTime = 7200
+#新浪用户信息轮询周期(单位秒)
+GenWeiboPageFromAccount.sinaUserShowStartTime = 10
+
+
+#腾讯微博轮询周期(单位秒)
+GenWeiboPageFromAccount.tencentWeiboStartTime = 180
+#腾讯微博采用userTimeLine方式轮询周期(单位秒)
+GenWeiboPageFromAccount.tencentWeiboFromUserTimeLineStartTime = 180
+#腾讯搜索轮询周期(单位秒)
+GenWeiboPageFromAccount.tencentSearchStartTime = 300
+#腾讯热点话题轮询周期(单位秒)
+GenWeiboPageFromAccount.tencentTrendStartTime = 7200
+#腾讯用户信息轮询周期(单位秒)
+GenWeiboPageFromAccount.tencentUserShowStartTime = 10
+#腾讯好友轮询周期(单位秒)
+GenWeiboPageFromAccount.tencentFriendStartTime = 86400
+#腾讯粉丝轮询周期(单位秒)
+GenWeiboPageFromAccount.tencentFollowerStartTime = 86400
+
+
+#Twitter微博轮询周期(单位秒)
+GenWeiboPageFromAccount.twitterWeiboStartTime = 60
+#Twitter好友轮询周期(单位秒)
+GenWeiboPageFromAccount.twitterFriendStartTime = 86400
+#Twitter粉丝轮询周期(单位秒)
+GenWeiboPageFromAccount.twitterFollowerStartTime =  86400
+#Twitter搜索轮询周期(单位秒)
+GenWeiboPageFromAccount.twitterSearchStartTime =  120
+#Twitter热点话题轮询周期(单位秒)
+GenWeiboPageFromAccount.twitterTrendStartTime = 7200
+#Twitter个人属性题轮询周期(单位秒)
+GenWeiboPageFromAccount.twitterUserShowStartTime = 600
+
+
+#Netease微博轮询周期(单位秒)
+GenWeiboPageFromAccount.neteaseWeiboStartTime = 180
+#Netease好友轮询周期(单位秒)
+GenWeiboPageFromAccount.neteaseFriendStartTime = 86400
+#Netease粉丝轮询周期(单位秒)
+GenWeiboPageFromAccount.neteaseFollowerStartTime =  86400
+#Netease搜索轮询周期(单位秒)
+GenWeiboPageFromAccount.neteaseSearchStartTime =  300
+#Netease热点话题轮询周期(单位秒)
+GenWeiboPageFromAccount.neteaseTrendStartTime = 7200
+#Netease个人属性题轮询周期(单位秒)
+GenWeiboPageFromAccount.neteaseUserShowStartTime = 7200
+
+
+#Sohu微博轮询周期(单位秒)
+GenWeiboPageFromAccount.sohuWeiboStartTime = 180
+#Sohu好友轮询周期(单位秒)
+GenWeiboPageFromAccount.sohuFriendStartTime = 86400
+#Sohu粉丝轮询周期(单位秒)
+GenWeiboPageFromAccount.sohuFollowerStartTime =  86400
+#Sohu搜索轮询周期(单位秒)
+GenWeiboPageFromAccount.sohuSearchStartTime =  300
+#Sohu热点话题轮询周期(单位秒)
+GenWeiboPageFromAccount.sohuTrendStartTime = 7200
+#Sohu个人属性题轮询周期(单位秒)
+GenWeiboPageFromAccount.sohuUserShowStartTime = 7200
